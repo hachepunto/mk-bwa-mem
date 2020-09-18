@@ -1,0 +1,6 @@
+#!/bin/bash
+# snap can filter a set of files and it's more efficient to align them all on the same run
+# rather than running snap once for each file
+find -L data/ -name '*R1.paired.fastq.gz' \
+	| sed -e 's#data/#results/#g' \
+		-e 's#_R1.paired.fastq.gz#.paired.sorted.bam.bai#g'

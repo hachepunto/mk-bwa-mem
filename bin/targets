@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bin/targets-paired
+bin/targets-unpaired
