@@ -1,7 +1,7 @@
 <config.mk
 
 ## Align whit BWA MEM
-results/%.unpaired.sam: data/%.unpaired.fastq.gz 
+results/%.unpaired.sam:	data/%.unpaired.fastq.gz 
 	mkdir -p `dirname $target`
 	READGROUP=`echo $stem | bin/extract-fastq-data`
 	bwa mem \
@@ -12,7 +12,7 @@ results/%.unpaired.sam: data/%.unpaired.fastq.gz
 		> $target".build" \
 	&& mv $target".build" $target
 
-results/%.paired.sam: data/%_R1.paired.fastq.gz	data/%_R2.paired.fastq.gz
+results/%.paired.sam:	data/%_R1.paired.fastq.gz data/%_R2.paired.fastq.gz
 	mkdir -p `dirname $target`
 	READGROUP=`echo $stem | bin/extract-fastq-data`
 	bwa mem \
@@ -24,7 +24,7 @@ results/%.paired.sam: data/%_R1.paired.fastq.gz	data/%_R2.paired.fastq.gz
 	&& mv $target".build" $target
 
 ##Sam to bam conversion
-results/%.bam : results/%.sam
+results/%.bam:	results/%.sam
 	samtools view \
 		-b \
 		-S $prereq > $target".build" \
